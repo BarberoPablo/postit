@@ -1,0 +1,21 @@
+@api = http://localhost:3001
+
+GET {{api}}/products 
+
+###
+
+GET {{api}}/product/6356de2887b0f5abfe5bf123 
+
+### 
+
+POST {{api}}/products 
+Content-Type: application/json
+
+{
+  "name": "Oil",
+  "type": "Aceite2",
+  "images": [],
+  "description": "El mejor del mercado",
+  "price": 2000
+}
+
