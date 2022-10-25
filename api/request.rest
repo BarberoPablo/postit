@@ -12,7 +12,7 @@ POST {{api}}/products
 Content-Type: application/json
 
 {
-  "name": "Oil",
+  "name": "Oile",
   "type": "Aceite2",
   "images": [],
   "description": "El mejor del mercado",
