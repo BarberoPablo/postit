@@ -12,10 +12,35 @@ POST {{api}}/products
 Content-Type: application/json
 
 {
-  "name": "Oile",
-  "type": "Aceite2",
-  "images": [],
+  "name": "CBD Pills Mint Flavour 20mg",
+  "images": ["https://byolitic.com/wp-content/uploads/2021/06/cbd-mint-pills-1-300x300.png"],
+  "type": "Pildoras",
   "description": "El mejor del mercado",
-  "price": 2000
+  "price": 690
 }
+
+###
+/*
+  "name": "Natural CBD Oil Drops 1000mg in 30ml",
+  "images": ["https://byolitic.com/wp-content/uploads/2021/07/CBD-Oil-Drops-1000mg-300x300.png"],
+  "type": "Aceite",
+
+  "name": "Citrus CBD Coconut Oil 1000mg in 30ml",
+  "images": ["https://byolitic.com/wp-content/uploads/2021/06/CBD-Oil-Citrus-300x300.png"],
+  "type": "Aceite",
+  
+  "name": "CBD Face Cream 500mg",
+  "images": ["https://byolitic.com/wp-content/uploads/2021/06/CBD-face-cream-30ml-300x300.png"],
+  "type": "Crema",
+
+  "name": "Green CBD Gummies 25mg",
+  "images": ["https://byolitic.com/wp-content/uploads/2021/06/CBD-gummy-squares-1-300x300.png"],
+  "type": "Gomitas",
+
+  "name": "CBD Pills Mint Flavour 20mg",
+  "images": ["https://byolitic.com/wp-content/uploads/2021/06/cbd-mint-pills-1-300x300.png"],
+  "type": "Pildoras",
+
+*/
+
 

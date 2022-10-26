@@ -22,7 +22,7 @@ export const getProduct: RequestHandler = async (req, res) => {
 export const createProduct: RequestHandler = async (req, res) => {
   try {
     const { name, price, type, images, description } = req.body;
-
+    console.log("entra");
     if (!name || !price || !type || !description) {
       return res
         .status(400)
