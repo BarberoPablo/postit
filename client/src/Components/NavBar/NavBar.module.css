@@ -1,0 +1,16 @@
+.container {
+  font-family: 'Mulish', sans-serif;
+}
+
+.menu {
+  display: flex;
+}
+
+.menuOption {
+  color: rgb(0, 0, 0);
+  text-decoration: none
+}
+
+.menuOption:hover {
+  color: rgb(104, 243, 127)
+}
