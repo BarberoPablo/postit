@@ -1,8 +1,23 @@
 .conteiner {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
   color: black;
-  min-height: calc(100vh - 70px - 7vh);
+  max-width: 80%;
+  margin: auto;
+  padding: 10px;
 }
+
+/*
+.center {
+  text-align: center;
+  border: 3px solid green;
+}
+.center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+*/

@@ -23,15 +23,6 @@ const productSchema = new Schema(
       type: Number,
       required: true,
     },
-    reviews: [
-      {
-        profilePicture: String, // URL
-        name: String,
-        score: Number,
-        title: String,
-        comment: String,
-      },
-    ],
   },
   {
     versionKey: false,

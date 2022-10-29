@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import config from "./config";
 import productRoutes from "./routes/product/product.routes";
+import userRoutes from "./routes/user/user.routes";
 //import routes ej:       import videoRoutes from "./routes/videos.routes"
 //app.use esas routes ej: app.use(videoRoutes)
 const app = express();
@@ -16,5 +17,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(productRoutes);
+app.use(userRoutes);
 
 export default app;
