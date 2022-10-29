@@ -3,5 +3,7 @@
   flex-direction: column;
   position: relative;
   align-items: center;
-  width: 100%;
+  background-color: var(--productBackgroud);
+  color: var(--productFont);
+  margin-bottom: 1em;
 }
