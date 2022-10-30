@@ -1,6 +1,40 @@
 import { RequestHandler } from "express";
-import { User, userInterface } from "./User";
+import { User, IUser } from "./User";
+
 const bcrypt = require("bcrypt");
+
+let refreshTokens = [];
+
+const authenticateUser = async (email: string, password: string) => {
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return {
+        status: 400,
+        message: "Wrong email or password",
+      };
+    }
+    if (await bcrypt.compare(password, user.password)) {
+      return user;
+    } else {
+      return {
+        status: 400,
+        message: "Wrong email or password",
+      };
+    }
+  } catch (error: any) {
+    throw {
+      status: error.status || 500,
+      message: error.message,
+    };
+  }
+};
+//  Testing authenticaUser function
+(async () => {
+  console.log("EXCECUTED");
+  const response = await authenticateUser("pablo@gmail.com", "1234asdf");
+  console.log(response);
+})();
 
 export const getAllUsers: RequestHandler = async (req, res) => {
   const projection = { password: 0, isAdmin: 0 }; //0 to exclude, 1 to inlclude
@@ -40,4 +74,11 @@ export const createUser: RequestHandler = async (req, res) => {
   } catch (error: any) {
     res.status(400).send(error.message);
   }
+};
+
+export const login: RequestHandler = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await authenticateUser(email, password);
+  } catch (error) {}
 };
