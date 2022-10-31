@@ -1,12 +1,13 @@
 import { Schema, model } from "mongoose";
 import { Product } from "../product/Product";
 
-export interface userInterface {
+export interface IUser {
   name: String;
   email: String;
   password: String;
-  favorites: Array<String>; //Array of Product ids
-  isAdmin: Boolean;
+  purchases?: Array<Object>;
+  favorites?: Array<String>; //Array of Product ids
+  isAdmin?: Boolean;
 }
 
 const user = new Schema(
@@ -41,4 +42,4 @@ const user = new Schema(
   }
 );
 
-export const User = model("User", user);
+export const User = model<IUser>("User", user);
