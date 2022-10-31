@@ -1,13 +1,15 @@
 import { RequestHandler } from "express";
 import { User, IUser } from "./User";
-
+import configuration from "../configuration/configuration";
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-let refreshTokens = [];
+let refreshTokens = []; //poner esto en la db
 
 const authenticateUser = async (email: string, password: string) => {
   try {
     const user = await User.findOne({ email });
+
     if (!user) {
       return {
         status: 400,
@@ -29,12 +31,12 @@ const authenticateUser = async (email: string, password: string) => {
     };
   }
 };
-//  Testing authenticaUser function
-(async () => {
-  console.log("EXCECUTED");
-  const response = await authenticateUser("pablo@gmail.com", "1234asdf");
-  console.log(response);
-})();
+
+const generateAccessToken = async (user: any) => {
+  return jwt.sign(user, configuration.jwt.accessToken.token, {
+    expiresIn: configuration.jwt.accessToken.expiresIn,
+  }); //  Change to 30m
+};
 
 export const getAllUsers: RequestHandler = async (req, res) => {
   const projection = { password: 0, isAdmin: 0 }; //0 to exclude, 1 to inlclude
@@ -80,5 +82,10 @@ export const login: RequestHandler = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await authenticateUser(email, password);
+    const accessToken = generateAccessToken(user);
+    const refreshToken = jwt.sign(user, configuration.jwt.refreshToken.token); //No expire date, manually handled
+
+    refreshTokens.push(refreshToken); // new valid refreshToken
+    res.json({ accessToken: accessToken, refreshToken: refreshToken }); //lo que hace esto es crear en el header un objeto accessToken???
   } catch (error) {}
 };
