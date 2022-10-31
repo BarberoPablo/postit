@@ -20,6 +20,17 @@ Content-Type: application/json
 }
 
 ###
+
+POST {{api}}/users/login 
+Content-Type: application/json
+
+{
+  "email": "pablo@gmail.com",
+  "password": "1234asdf"
+}
+
+
+###
 /*
   "name": "Natural CBD Oil Drops 1000mg in 30ml",
   "images": ["https://byolitic.com/wp-content/uploads/2021/07/CBD-Oil-Drops-1000mg-300x300.png"],
@@ -42,5 +53,6 @@ Content-Type: application/json
   "type": "Pildoras",
 
 */
+
 
 

@@ -1,25 +1,26 @@
 import { RequestHandler } from "express";
 import { User, IUser } from "./User";
-import configuration from "../configuration/configuration";
+import { configuration } from "../configuration/configuration";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-let refreshTokens = []; //poner esto en la db
+let refreshTokens: any = []; //poner esto en la db
 
 const authenticateUser = async (email: string, password: string) => {
   try {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return {
+      throw {
         status: 400,
         message: "Wrong email or password",
       };
     }
+
     if (await bcrypt.compare(password, user.password)) {
-      return user;
+      return user.toJSON();
     } else {
-      return {
+      throw {
         status: 400,
         message: "Wrong email or password",
       };
@@ -32,10 +33,13 @@ const authenticateUser = async (email: string, password: string) => {
   }
 };
 
-const generateAccessToken = async (user: any) => {
-  return jwt.sign(user, configuration.jwt.accessToken.token, {
-    expiresIn: configuration.jwt.accessToken.expiresIn,
-  }); //  Change to 30m
+const generateToken = (user: any) => {
+  return {
+    accessToken: jwt.sign(user, configuration.jwt.accessToken.token, {
+      expiresIn: configuration.jwt.accessToken.expiresIn,
+    }),
+    refreshToken: jwt.sign(user, configuration.jwt.refreshToken.token),
+  };
 };
 
 export const getAllUsers: RequestHandler = async (req, res) => {
@@ -82,10 +86,11 @@ export const login: RequestHandler = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await authenticateUser(email, password);
-    const accessToken = generateAccessToken(user);
-    const refreshToken = jwt.sign(user, configuration.jwt.refreshToken.token); //No expire date, manually handled
+    const token = generateToken(user);
 
-    refreshTokens.push(refreshToken); // new valid refreshToken
-    res.json({ accessToken: accessToken, refreshToken: refreshToken }); //lo que hace esto es crear en el header un objeto accessToken???
-  } catch (error) {}
+    refreshTokens.push(token.refreshToken);
+    res.json(token); //lo que hace esto es crear en el header un objeto accessToken
+  } catch (error: any) {
+    res.status(error.status || 500).send(error.message);
+  }
 };
