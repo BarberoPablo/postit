@@ -4,7 +4,7 @@ import { configuration } from "../configuration/configuration";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-let refreshTokens: any = []; //poner esto en la db
+let refreshTokens: any = []; //poner esto en la db.
 
 const authenticateUser = async (email: string, password: string) => {
   try {
