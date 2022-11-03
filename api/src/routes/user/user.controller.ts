@@ -42,6 +42,34 @@ const generateToken = (user: any) => {
   };
 };
 
+export const updateAccessToken: RequestHandler = async (req, res) => {
+  const refreshToken = req.body.token;
+  if (refreshToken == null) {
+    return res.sendStatus(401); //Forbidden
+  }
+  if (!refreshTokens.includes(refreshToken)) {
+    return res.sendStatus(403); //No access
+  }
+  jwt.verify(
+    refreshToken,
+    configuration.jwt.refreshToken.token,
+    (err: Error, user: IUser) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+      //  El primerparametro del sign son las props que va a tener el access token, poner todas no solo el email
+      const accessToken = jwt.sign(
+        { email: user.email },
+        configuration.jwt.accessToken.token,
+        {
+          expiresIn: configuration.jwt.accessToken.expiresIn,
+        }
+      );
+      res.json({ accessToken: accessToken });
+    }
+  );
+};
+
 export const getAllUsers: RequestHandler = async (req, res) => {
   const projection = { password: 0, isAdmin: 0 }; //0 to exclude, 1 to inlclude
   const users = await User.find({}, projection);
@@ -94,3 +122,18 @@ export const login: RequestHandler = async (req, res) => {
     res.status(error.status || 500).send(error.message);
   }
 };
+
+//  A partir del refresh token, generamos un access token nuevo:
+//  Si no es un token válido o no me llega nada: error
+//  Si me llega uno nuevo, lo añado a la coleccion de refreshTokens
+
+export const logout: RequestHandler = async (req, res) => {
+  console.log("Before", refreshTokens);
+  refreshTokens = refreshTokens.filter(
+    (token: any) => token !== req.body.token
+  );
+  console.log("After", refreshTokens);
+  res.sendStatus(204);
+};
+
+//LOGOUT

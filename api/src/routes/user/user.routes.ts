@@ -11,6 +11,10 @@ router.post("/users", userController.createUser);
 
 router.post("/users/login", userController.login);
 
+router.post("/token", userController.updateAccessToken);
+
+router.delete("/users/logout", userController.logout);
+
 export default router;
 
 //Cambiar contraseña con auth de usuario
