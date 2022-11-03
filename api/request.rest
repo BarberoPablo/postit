@@ -4,7 +4,7 @@ GET {{api}}/products
 
 ###
 
-GET {{api}}/product/6356de2887b0f5abfe5bf123 
+GET {{api}}/product/6358b89979c1d9fe6a0f35d8 
 
 ### 
 
@@ -29,6 +29,24 @@ Content-Type: application/json
   "password": "1234asdf"
 }
 
+###
+
+POST {{api}}/token
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwdXJjaGFzZXMiOltdLCJfaWQiOiI2MzVjOGM0NDJhNjFlNGFmZDdhMjM3MzkiLCJuYW1lIjoiUGFibG8iLCJlbWFpbCI6InBhYmxvQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJDBuTGdBbEw2QnFWOGZxT2NWcGsyeWU4NnNHaHZTQUF6Z2dyL1JQUGs2Sk9CRk8vU0ZWY2k2IiwiZmF2b3JpdGVzIjpbXSwiaXNBZG1pbiI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjItMTAtMjlUMDI6MTM6MjQuNDY5WiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMjlUMDI6MTM6MjQuNDY5WiIsImlhdCI6MTY2NzM5NTI3M30.KuTdxF8ooyJjhBJU3Y-lPFKQh4lmnqPNXT_AUxoLN74"
+}
+
+###
+
+DELETE {{api}}/users/logout
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwdXJjaGFzZXMiOltdLCJfaWQiOiI2MzVjOGM0NDJhNjFlNGFmZDdhMjM3MzkiLCJuYW1lIjoiUGFibG8iLCJlbWFpbCI6InBhYmxvQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJDBuTGdBbEw2QnFWOGZxT2NWcGsyeWU4NnNHaHZTQUF6Z2dyL1JQUGs2Sk9CRk8vU0ZWY2k2IiwiZmF2b3JpdGVzIjpbXSwiaXNBZG1pbiI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjItMTAtMjlUMDI6MTM6MjQuNDY5WiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMjlUMDI6MTM6MjQuNDY5WiIsImlhdCI6MTY2NzQzMjY1MH0.j0_qV63JTT6eVZ7OGhIJK_x5hHQTrmwYBGkV27CyHoI"
+}
+
 
 ###
 /*
@@ -51,7 +69,6 @@ Content-Type: application/json
   "name": "CBD Pills Mint Flavour 20mg",
   "images": ["https://byolitic.com/wp-content/uploads/2021/06/cbd-mint-pills-1-300x300.png"],
   "type": "Pildoras",
-
 */
 
 
