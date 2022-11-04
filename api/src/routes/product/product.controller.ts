@@ -39,7 +39,7 @@ export const createProduct: RequestHandler = async (req, res) => {
 
     const newProduct = await product.save();
 
-    return res.status(201).send(newProduct);
+    return res.status(201).json(newProduct);
   } catch (error: any) {
     if (error instanceof Error.ValidationError) {
       const errors: string = Object.keys(error.errors).join(", ");

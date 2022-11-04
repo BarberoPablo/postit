@@ -8,6 +8,7 @@ export const ProductCard = (props: ProductProps) => {
     <div className={styles.conteiner}>
       <img src={props.image} />
       <a>{props.name}</a>
+      <button>Agregar al carrito</button>
       <button>
         {props.price}
         <BsCart2 />

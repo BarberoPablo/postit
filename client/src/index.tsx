@@ -5,6 +5,9 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./Components/NavBar/NavBar";
 import Home from "./Components/Home/Home";
+import AllProducts from "./Components/Products/AllProducts";
+import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,6 +18,9 @@ root.render(
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/products" element={<AllProducts />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
