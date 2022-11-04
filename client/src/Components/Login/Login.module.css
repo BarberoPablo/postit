@@ -1,0 +1,11 @@
+.loginTitle {
+  color: red
+}
+
+.loginSubtitle {
+  display: flex;
+}
+
+.loginForm {
+  display: column
+}
